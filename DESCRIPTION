@@ -1,0 +1,16 @@
+Package: HierDmap
+Version: 0.5.0
+Date: 2019-09-30
+Title: HierDmap aims to visualize hierarchical diversity. It is used to illustrate the diversity decomposition from HierDpart package. The circle (node) represents a aggregate at a certain hierarchical level and the circles inside of it (sub-nodes) represents sub-aggregate at a low level. The size of each aggregate is proportional to the diversity value.
+Author: Xinghu Qin
+Maintainer: Xinghu Qin <qinxinghu@gmail.com>
+Depends: R (>= 3.0)
+License: GPL (>= 3)
+SystemRequirements: GNU make
+URL: https://github.com/xinghuq/HierDmap
+BugReports: https://github.com/xinghuq/HierDmap/issues
+Imports: ggraph,igraph,tidyverse,entropart,adegenet,HierDpart,hierfstat,diveRsity
+VignetteBuilder: knitr
+NeedsCompilation: no
+RoxygenNote: 7.1.1
+Suggests: knitr,testthat,rmarkdown
