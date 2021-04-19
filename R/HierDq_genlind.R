@@ -4,7 +4,7 @@
 HierDgenind=function (x,pop_region,pop,q) {
 
   requireNamespace("dplyr")
-  library('entropart')
+  requireNamespace('entropart')
   CheckentropartArguments=FALSE
   defaultW <- getOption("warn") 
   options(warn = -1)
@@ -47,7 +47,7 @@ HierDgenind=function (x,pop_region,pop,q) {
   rownames(Dpop) = unique(x$loc.fac)
   colnames(Dpop) = unique(pop)
   
- CheckArguments=FALSE 
+ 
   Dreg = as.data.frame(matrix(data = 0, ncol = nreg, nrow = nloci))
   for (i in 1:nloci) {
     for (j in 1:nreg) {
@@ -68,7 +68,7 @@ HierDgenind=function (x,pop_region,pop,q) {
   rownames(Deco) = unique(x$loc.fac)
   colnames(Deco) = unique(ecosystem)
   colMedians=function(x,na.rm){
-    colmedval=apply(x, 2, function (x,...) {median(x,na.rm = na.rm,...)})
+    colmedval=apply(x, 2, function (x,...) {stats::median(x,na.rm = na.rm,...)})
     return(colmedval)
   }
   

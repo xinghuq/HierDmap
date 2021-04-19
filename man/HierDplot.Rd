@@ -30,7 +30,9 @@
 %% ...
 }
 \references{
-Pedersen, T. L., Pedersen, M. T. L., LazyData, T. R. U. E., Rcpp, I., & Rcpp, L. (2017). Package ‘ggraph’. Retrieved January, 1, 2018.
+Pedersen, T. L., Pedersen, M. T. L., LazyData, T. R. U. E., Rcpp, I., & Rcpp, L. (2017). Package "ggraph". Retrieved January, 1, 2018.
+
+Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran.r-project.org/package=HierDpart.
 %% ~put references to the literature/web site here ~
 }
 \author{qinxinghu@gmail.com

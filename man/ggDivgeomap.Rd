@@ -8,7 +8,9 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-ggDivgeomap(data, scale = "medium", returnclass = "sf", size = HiereHGDPq1$HierD$MDpop, tittle = "Global Genetic Diversity Map", subtitle = ("Scaled relative genetic diversity of HGDP populations"), ...)
+ggDivgeomap(data,x,y, scale = "medium", returnclass = "sf", 
+size, title = "Global Genetic Diversity Map", 
+subtitle = ("Scaled relative genetic diversity of HGDP populations"), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -55,7 +57,7 @@ Wickham, H. (2011). ggplot2. Wiley Interdisciplinary Reviews: Computational Stat
 
 South, A. (2017). Rnaturalearth: world map data from natural earth. R package version 0.1. 0.
 
-Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran. r-project. org/package= HierDpart.
+Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran.r-project.org/package=HierDpart.
 
 %% ~put references to the literature/web site here ~
 }
@@ -63,9 +65,13 @@ Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiati
 %%  ~~who you are~~
 }
 \examples{
+#Load data
 data(Dprofile)
-
-ggDivgeomap(data = Dprofile,x=Dprofile$Longitude, y= Dprofile$Latitude,scale = "medium", returnclass = "sf",size=normalize(Dprofile$Dq1)*10,tittle="Human Population Genetic Diversity Map",subtitle=("Scaled relative genetic diversity of HGDP populations"))
+##plot
+ggDivgeomap(data = Dprofile,x=Dprofile$Longitude, y= Dprofile$Latitude,
+scale = "medium", returnclass = "sf",size=normalize(Dprofile$Dq1)*10,
+title="Human Population Genetic Diversity Map",
+subtitle=("Scaled relative genetic diversity of HGDP populations"))
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

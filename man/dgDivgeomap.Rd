@@ -8,7 +8,10 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-dgDivgeomap(data, x = Longitude, y = Latitude, lon = c(-160, 160), lat = c(-60, 70), mapsource = "osm", mapcolor = "color", maptype = "satellite", point_color = "red", pointalpha = 0.2, pointsize = normalize(HiereHGDPq1$HierD$MDpop) * 10, ...)
+dgDivgeomap(data, x, y, lon = c(-160, 160), lat = c(-60, 70), 
+mapsource = "osm", mapcolor = "color", maptype = "satellite", 
+point_color = "red", pointalpha = 0.2, 
+pointsize, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -77,11 +80,13 @@ Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiati
 
 \examples{
 data(Dprofile)
-dgDivgeomap(Dprofile,x=Dprofile$Longitude, y=Dprofile$Latitude,lon = c(-160, 160), lat = c(-60, 70),  mapsource = "osm", mapcolor = "color", maptype="satellite",
-                     point_color="red", pointalpha = .2, pointsize=normalize(Dprofile$Dq1)*10)
+dgDivgeomap(Dprofile,x=Dprofile$Longitude, 
+y=Dprofile$Latitude,lon = c(-160, 160), lat = c(-60, 70),  
+mapsource = "osm", mapcolor = "color", maptype="satellite",
+point_color="red", pointalpha = .2, pointsize=normalize(Dprofile$Dq1)*10)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ Biogeographic map }% use one of  RShowDoc("KEYWORDS")
+

@@ -1,0 +1,210 @@
+---
+title: "Visualizing the geo-biodiversity profiles and the hierarchical structure of biodiversity"
+author: "Xinghu Qin  --School of Biology, University of St Andrews"
+#date: "`r Sys.Date()`"
+date: "19-04-2021"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Instruction for Package DA }
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Instruction
+
+This vignette provides a step-by-step tutorial for visualizing the geo-biodiversity profiles and the hierarchical structure of biodiversity. In this tutorial, we will use the simulated microsatellite genotypes under a hierarchical island model to visualize the diversity in the hierarchy. We then use the HDGP data to show the genetic diversity-density map.
+
+
+# Diversity profiles and geo-biodiversity map
+
+The diversity profile,_q^D_, based on the Hill numbers (q=0, 1, 2), provides a complementary description of the variations in aggregates (Chao, A. et al, 2014; Gaggiotti, et al, 2018; Jost, L. et al, 2018; Sherwin, W. 2018). Decomposing diversity into global and local aggregates has allowed us to better understand the components of diversity in a hierarchy. Populations sampled from large spatial areas (i.e., continents) can be partitioned into several regions, sub-regions, populations, and sub-populations based on the nested structure of the populations. Currently, packages especially used to visualize the hierarchical structure of diversities are still lacking. I present the "HierDmap" package here. The main function of this package is to intuitively visualize the diversity in a hierarchy and plot the diversity profiles onto a geographic map.
+
+We use simulated microsatellite genotypes with 16 populations nested in four regions. Each region has 7, 4, 2, 3 populations respectively. The hierarchy of the structure can be formatted using "HierStr" function from "HierDpart" package (Qin, X, 2019). Besides, we use the HDGP data (Cann HM,et al. 2002) to plot the genetic diversity onto a geographic map.  
+
+
+## Install and load the dataset
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+```{r, install}
+## or you can get the latest version of HierDpart from github
+#if (!requireNamespace("devtools", quietly = TRUE))
+#    install.packages("devtools")
+#if (!requireNamespace("circlepackeR", quietly = TRUE))
+#devtools::install_github("jeromefroe/circlepackeR")
+
+#if (!requireNamespace("HierDmap", quietly = TRUE))
+#devtools::install_github("xinghuq/HierDmap")
+#install_github("xinghuq/HierDmap")
+
+library("HierDmap")
+
+```
+
+# Simulated hierarchical island model
+
+
+## Load the data and calculate diversity profiles.
+
+```{r message=FALSE,warning = FALSE}
+
+library(HierDmap)
+
+f <- system.file('extdata',package='HierDpart')
+infile <- file.path(f, "Island.gen")
+file =  diveRsity::readGenepop(infile, gp=2, bootstrap = FALSE)
+
+### calculate diversity of order q=1
+HierDisland=HierDq(infile,q=1,ncode=3,nreg = 4,r=c(7,4,2,3))
+
+```
+
+## Plot the hierarchy of diversities from populations to ecosystem
+
+```{r fig1, fig.height = 8, fig.width = 8.5, fig.align = "center"} 
+
+###Structure the diversity values
+hie_mapdata=HierDstr(HierDisland)
+
+### Plot the diversity 
+HierDplot(hie_mapdata,layout = 'circlepack')
+
+```
+
+Fig. 1. The hierarchy of diversity (q=1) values. The size of the circle represents the diversity value.
+
+
+
+## HDPG dataset
+
+## Load the data and calculate diversity profiles.
+
+```{r, message=FALSE}
+## load dataset, genlind format
+data(eHGDP)
+
+### formating data, restructing the hierarchical data structure 
+levels(eHGDP$pop)=eHGDP$other$popInfo$Population
+###struct a table with individual region/pop labels
+popstr= eHGDP$other$popInfo[match(eHGDP$pop,eHGDP$other$popInfo$Population),]
+popstr$Population=factor(popstr$Population,levels=unique(popstr$Population))
+popstr$Region=factor(popstr$Region,levels=unique(popstr$Region))
+#library(poppr)
+#eHGDP1=missingno(eHGDP, type = "mean",  quiet = FALSE, freq = FALSE)
+
+eHGDP$tab=(adegenet::tab(eHGDP, freq = FALSE, NA.method = "mean"))
+
+#HiereHGDPq0=HierDgenind(eHGDP,q=0,pop_region = popstr$Region,pop = popstr$Population)
+###
+HiereHGDPq1=HierDgenind(eHGDP,q=1,pop_region = popstr$Region,pop = popstr$Population)
+#HiereHGDPq2=HierDgenind(eHGDP,q=2,pop_region = popstr$Region,pop = popstr$Population)
+
+```
+
+## Plot the hierarchy of populations, from countries to continents.
+
+```{r fig2, fig.height = 8, fig.width = 8.5, fig.align = "center"} 
+
+###Structure the diversity values
+a=HierDstrp(HiereHGDPq1)
+
+### Plot the diversity 
+HierDplot(a,layout = 'circlepack')+ ggplot2::scale_fill_distiller(palette = "RdPu")
+
+```
+
+
+Fig. 2. The hierarchy of genetic diversity (q=1) of HGDP data. The size of the circle represents the diversity value.
+
+
+## Plot the interactive plot for hierarchy of populations, from countries to continents.
+
+```{r fig3, message=FALSE,fig.height = 8, fig.width = 8.5, fig.align = "center"} 
+
+###Structure the diversity values
+a=HierDstrp(HiereHGDPq1)
+
+### Plot the diversity 
+
+data(Dprofile)
+
+PlothieD(Dprofile[,-1],size = "Dq1")
+
+```
+
+Fig.3. The interactive plot of genetic diversity (q=1) across continents for HGDP data. The size of the circle represents the diversity value.
+
+
+## Plot the geo-diversity map method 1.
+
+```{r fig4, message=FALSE,warning = FALSE,fig.height = 8, fig.width = 8.5, fig.align = "center"} 
+##load data
+data(Dprofile)
+
+rDivgeomap(x=Dprofile$Longitude,y=Dprofile$Latitude,size=normalize(Dprofile$Dq1)*10)
+
+```
+ Fig. 4. Geo-diversity map of HGDP populations.
+
+
+## Plot the geo-diversity map method 2.
+```{r fig5, message=FALSE,warning = FALSE,fig.height = 8, fig.width = 8.5, fig.align = "center"} 
+## 
+data(Dprofile)
+
+ggDivgeomap(data = Dprofile,x=Dprofile$Longitude, y= Dprofile$Latitude,scale = "medium", returnclass = "sf",size=normalize(Dprofile$Dq1)*10,title="Human Population Genetic Diversity Map",subtitle=("Scaled relative genetic diversity of HGDP populations"))
+
+```
+ Fig. 5. Geo-diversity map of HGDP populations.
+
+## Plot the geo-diversity map method 3.
+
+```{r fig6, message=FALSE,warning = FALSE,fig.height = 8, fig.width = 8.5, fig.align = "center"} 
+
+data(Dprofile)
+
+ dDivgeomap(Dprofile,x=Dprofile$Longitude, y=Dprofile$Latitude,label=Dprofile$Population,border_colour=NA, border_fill="antiquewhite",density_fill =Dprofile$Dq1 , density_alpha = I(.2),density_size = 1, bins = 5, geom = "polygon",point_color="red", pointalpha = .2, pointsize=normalize(Dprofile$Dq1)*10)
+
+```
+
+ Fig. 6. Geo-diversity and diversity density map of HGDP populations.
+ 
+ 
+## Plot the geo-diversity map method 4.
+
+```{r fig7, message=FALSE,warning = FALSE,fig.height = 8, fig.width = 8.5, fig.align = "center"} 
+
+data(Dprofile)
+dgDivgeomap(Dprofile,x=Dprofile$Longitude, y=Dprofile$Latitude,lon = c(-160, 160), lat = c(-60, 70),  mapsource = "osm", mapcolor = "color", maptype="satellite",
+                     point_color="red", pointalpha = .2, pointsize=normalize(Dprofile$Dq1)*10)
+
+```
+ Fig. 7. Geo-diversity and diversity density map of HGDP populations.
+ 
+ 
+ 
+ 
+ 
+The above vignette summarizes and demonstrates the main functions of "HierDmap" package. Users can apply this package and adopt the methods for visualizing different values and hierarchies. This package will be much useful for metacommunity data, metapopulation data, and for geographic distribution/density of the target metric.
+
+
+## References
+
+Chao, A., Chiu, C. H., & Jost, L. (2014). Unifying species diversity, phylogenetic diversity, functional diversity, and related similarity and differentiation measures through Hill numbers. Annual review of ecology, evolution, and systematics, 45, 297-324.
+
+Gaggiotti, O. E., Chao, A., Peres‐Neto, P., Chiu, C. H., Edwards, C., Fortin, M. J., ... & Selkoe, K. A. (2018). Diversity from genes to ecosystems: A unifying framework to study variation across biological metrics and scales. Evolutionary Applications, 11(7), 1176-1193.
+
+
+Jost, L., Archer, F., Flanagan, S., Gaggiotti, O., Hoban, S., & Latch, E. (2018). Differentiation measures for conservation genetics. Evolutionary Applications, 11(7), 1139-1148.
+
+Sherwin, W. B. (2018). Entropy, or information, unifies ecology and evolution and beyond. Entropy, 20(10), 727.
+
+Cann HM, de Toma C, Cazes L, Legrand MF, Morel V, et al. (2002) A human genome diversity cell line panel. Science 296: 261-262.

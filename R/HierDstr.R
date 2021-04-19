@@ -55,7 +55,7 @@ HierDstrp=function(x){
   MedianD=list(MDpop=colMedians(x$Dpop,na.rm = FALSE),MDreg=colMedians(x$Dreg,na.rm = FALSE),MDeco=colMedians(x$Deco,na.rm = FALSE))
   
   #HierStr=as.data.frame(matrix(data = 0, ncol = 2, nrow = nreg+npops))
-  require(dplyr)
+  requireNamespace("dplyr")
   Hier1=Hier %>% 
     distinct(pop, .keep_all = T)
   col2=rbind(as.matrix(unique(Hier1[,2])),as.matrix(unique(Hier1[,3])))

@@ -80,7 +80,7 @@ HierDq=function (x,q, nreg, r, ncode) {
   nind=length(genfiles$pop)
   ecosystem=rep("eco 1",nind)
   sampsize = summary(genfiles$pop)
-  library('entropart')
+  requireNamespace('entropart')
   CheckentropartArguments=FALSE
   defaultW <- getOption("warn") 
   options(warn = -1)
@@ -91,6 +91,7 @@ HierDq=function (x,q, nreg, r, ncode) {
   if (sum(r) != npops)
     stop("Number of pops should be equal to the number defined in level")
   rsample = list()
+  requireNamespace("utils")
   for (i in 1:nreg) {
     rsample[[i]] = sum(sampsize[(sum(head(r, i - 1)) + 1):(sum(head(r, i)))])
   }

@@ -24,7 +24,7 @@
 %% ...
 }
 \references{
-Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran. r-project. org/package= HierDpart.
+Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran.r-project.org/package=HierDpart.
 %% ~put references to the literature/web site here ~
 }
 \author{qinxinghu@gmail.com
@@ -43,5 +43,5 @@ hie_mapdata=HierDstr(HierDisland)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ HierDstr}% use one of  RShowDoc("KEYWORDS")
+

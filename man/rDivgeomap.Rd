@@ -8,7 +8,11 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-rDivgeomap(x = Longitude, y = Latitude, xlim = c(-180, 180), ylim = c(-90, 90), asp = 1, bg = "aliceblue", cols = "white", fill = T, border = "lightgrey", wrap = c(-180, 180), col = rgb(red = 0, green = 0, blue = 1, alpha = 0.3), cex = normalize(HiereHGDPq1$HierD$MDpop) * 10, pch = 20, ...)
+rDivgeomap(x, y , xlim = c(-180, 180), ylim = c(-90, 90), 
+asp = 1, bg = "aliceblue", cols = "white", fill = T, 
+border = "lightgrey", wrap = c(-180, 180), 
+col =grDevices::rgb(red = 0, green = 0, blue = 1, alpha = 0.3), 
+size, pch = 20, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -45,7 +49,7 @@ rDivgeomap(x = Longitude, y = Latitude, xlim = c(-180, 180), ylim = c(-90, 90), 
   \item{col}{The colour of points
 %%     ~~Describe \code{col} here~~
 }
-  \item{cex}{ The size of the diversity in a location.
+  \item{size}{ The size of the diversity in a location.
 %%     ~~Describe \code{cex} here~~
 }
   \item{pch}{The plot parameter, the indicator of the point.
@@ -71,7 +75,7 @@ Wickham, H. (2011). ggplot2. Wiley Interdisciplinary Reviews: Computational Stat
 
 Bivand, R., & Rundel, C. (2017). rgeos: interface to geometry engine-open source (GEOS). R package version 0.3-26.
 
-Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran. r-project. org/package= HierDpart.
+Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran.r-project.org/package=HierDpart.
 
 %% ~put references to the literature/web site here ~
 }

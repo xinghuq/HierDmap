@@ -8,7 +8,10 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-dDivgeomap(data, x = Longitude, y = Latitude, label = Population, border_colour = NA, border_fill = "antiquewhite", density_alpha = I(0.2), density_fill, density_size = 1, bins = 5, geom = "polygon", point_color = "red", pointalpha = 0.2, pointsize = normalize(HiereHGDPq1$HierD$MDpop) * 10, ...)
+dDivgeomap(data, x, y, label,
+border_colour = NA, border_fill = "antiquewhite",
+density_alpha = I(0.2), density_fill, density_size = 1, 
+bins = 5, geom = "polygon", point_color = "red", pointalpha = 0.2, pointsize, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -72,7 +75,7 @@ dDivgeomap(data, x = Longitude, y = Latitude, label = Population, border_colour 
 
 Wickham, H. (2011). ggplot2. Wiley Interdisciplinary Reviews: Computational Statistics, 3(2), 180-185.
 
-Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran. r-project. org/package= HierDpart.
+Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran.r-project.org/package=HierDpart.
 %% ~put references to the literature/web site here ~
 }
 \author{qinxinghu@gmail.com
@@ -80,9 +83,13 @@ Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiati
 }
 
 \examples{
+#load data
 data(Dprofile)
-  dDivgeomap(Dprofile,x=Dprofile$Longitude, y=Dprofile$Latitude,label=Dprofile$Population,border_colour=NA, border_fill="antiquewhite",density_fill =Dprofile$Dq1 , density_alpha = I(.2),density_size = 1, bins = 5, geom = "polygon"
-,point_color="red", pointalpha = .2, pointsize=normalize(Dprofile$Dq1)*10)
+##plot
+dDivgeomap(Dprofile,x=Dprofile$Longitude, y=Dprofile$Latitude,label=Dprofile$Population,
+  border_colour=NA, border_fill="antiquewhite",density_fill =Dprofile$Dq1,
+  density_alpha = I(.2),density_size = 1, bins = 5, geom = "polygon",
+  point_color="red", pointalpha = .2, pointsize=normalize(Dprofile$Dq1)*10)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

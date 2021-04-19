@@ -26,7 +26,8 @@ PlothieD=function(x, size = "Dq2",color_min = "hsl(56,80%,80%)", color_max = "hs
   }
   # Libraries
   if (!requireNamespace("devtools", quietly = TRUE))
-    install.packages("devtools")
+    utils::install.packages("devtools")
+  requireNamespace("devtools")
   devtools::install_github("jeromefroe/circlepackeR")
   
   if (!requireNamespace("circlepackeR", quietly = TRUE))
