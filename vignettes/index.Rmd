@@ -39,7 +39,7 @@ if (!requireNamespace("devtools", quietly = TRUE))
 
 ``````{r}
 
-vignette("HierDmap_tutorial")
+vignette("Introduction")
 
 ``````
 
