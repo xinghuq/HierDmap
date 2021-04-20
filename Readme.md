@@ -2,7 +2,7 @@
 ## HierDmap: Visualizing the geo-biodiversity profiles and the hierarchical structure of biodiversity
 
 
-HierDmap is used to visualize the diversity in hierarchies and plot the geo-diversity distribution/density map. In the hierarchy plot, the circle (node) represents a aggregate at a certain hierarchical level and the circles inside of it (sub-nodes) represents sub-aggregate at a low level. The size of each aggregate is proportional to the diversity value.
+HierDmap is designed to visualize the biodiversity (especially for genetic diversity) in hierarchies and plot the geo-diversity distribution/density map. In the hierarchy plot, the circle (node) represents a aggregate at a certain hierarchical level and the circles inside of it (sub-nodes) represents sub-aggregate at a low level. The size of each aggregate is proportional to the diversity value.
 
 
 ### Install packages
@@ -28,18 +28,17 @@ Before install or during installation, make sure the below dependences are insta
 ``````{r}
 if (!requireNamespace("devtools", quietly = TRUE))
     utils::install.packages("devtools")
-  devtools::install_github("jeromefroe/circlepackeR")
+
+if (!requireNamespace("circlepackeR", quietly = TRUE))
+    devtools::install_github("jeromefroe/circlepackeR")
   
-  if (!requireNamespace("circlepackeR", quietly = TRUE))
-    install.packages("circlepackeR")
-  devtools::install_github("jeromefroe/circlepackeR")
 ``````
 
 ### Vignettes and tutorials
 
 ``````{r}
 
-vignette("HierDmap_tutorial")
+vignette("Introduction")
 
 ``````
 

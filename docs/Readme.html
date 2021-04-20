@@ -128,7 +128,7 @@
 <div id="hierdmap-visualizing-the-geo-biodiversity-profiles-and-the-hierarchical-structure-of-biodiversity" class="section level2">
 <h2 class="hasAnchor">
 <a href="#hierdmap-visualizing-the-geo-biodiversity-profiles-and-the-hierarchical-structure-of-biodiversity" class="anchor"></a>HierDmap: Visualizing the geo-biodiversity profiles and the hierarchical structure of biodiversity</h2>
-<p>HierDmap is used to visualize the diversity in hierarchies and plot the geo-diversity distribution/density map. In the hierarchy plot, the circle (node) represents a aggregate at a certain hierarchical level and the circles inside of it (sub-nodes) represents sub-aggregate at a low level. The size of each aggregate is proportional to the diversity value.</p>
+<p>HierDmap is designed to visualize the biodiversity (especially for genetic diversity) in hierarchies and plot the geo-diversity distribution/density map. In the hierarchy plot, the circle (node) represents a aggregate at a certain hierarchical level and the circles inside of it (sub-nodes) represents sub-aggregate at a low level. The size of each aggregate is proportional to the diversity value.</p>
 <div id="install-packages" class="section level3">
 <h3 class="hasAnchor">
 <a href="#install-packages" class="anchor"></a>Install packages</h3>
@@ -147,17 +147,16 @@ R CMD INSTALL HierDmap_0.5.0.tar.gz</code></pre>
 <p>Before install or during installation, make sure the below dependences are installed.</p>
 <pre class="{r}"><code>if (!requireNamespace("devtools", quietly = TRUE))
     utils::install.packages("devtools")
-  devtools::install_github("jeromefroe/circlepackeR")
-  
-  if (!requireNamespace("circlepackeR", quietly = TRUE))
-    install.packages("circlepackeR")
-  devtools::install_github("jeromefroe/circlepackeR")</code></pre>
+
+if (!requireNamespace("circlepackeR", quietly = TRUE))
+    devtools::install_github("jeromefroe/circlepackeR")
+  </code></pre>
 </div>
 <div id="vignettes-and-tutorials" class="section level3">
 <h3 class="hasAnchor">
 <a href="#vignettes-and-tutorials" class="anchor"></a>Vignettes and tutorials</h3>
 <pre class="{r}"><code>
-vignette("HierDmap_tutorial")
+vignette("Introduction")
 </code></pre>
 <p>Welcome any <a href="https://github.com/xinghuq/HierDmap/issues">feedback</a> and <a href="https://github.com/xinghuq/HierDmap/pulls">pull request</a>.</p>
 </div>
