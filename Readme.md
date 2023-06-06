@@ -49,6 +49,6 @@ Welcome any [feedback](https://github.com/xinghuq/HierDmap/issues) and [pull req
 
 ### Citation
 
-Qin. X. 2020. HierDmap: Visualizing the geo-biodiversity profiles and the hierarchical structure of biodiversity. R package version 0.5.0.
+Qin, X.Jia,P. 2023. HierDmap: Visualizing the geo-biodiversity profiles and the hierarchical structure of biodiversity. R package version 0.5.0.
 
 Qin, X. (2019). HierDpart: partitioning hierarchical diversity and differentiation across metrics and scales, from genes to ecosystems. R package version 0.5. 0 https://cran.r-project.org/package=HierDpart.
